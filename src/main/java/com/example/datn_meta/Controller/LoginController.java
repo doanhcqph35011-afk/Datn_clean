@@ -16,6 +16,8 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -154,21 +156,25 @@ public class LoginController {
     }
 
     @GetMapping("oauth2/success")
-    public String oauth2success(Authentication authentication, RedirectAttributes redirectAttributes) {
+    public String oauth2success(Authentication authentication, RedirectAttributes redirectAttributes, OAuth2UserRequest userRequest) {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getAttribute("email");
         String name = oAuth2User.getAttribute("name");
+        String providerId = oAuth2User.getAttribute("id");
+        String provider = authentication.getAuthorities().toString(); // phân biệt gg/fb nếu cần
         // Lưu user nếu chưa tồn tại
         userDao.findByEmail(email).orElseGet(() -> {
             Users newUser = new Users();
-            newUser.setFullName(name);
-            newUser.setEmail(email);
-            newUser.setPassword("oauth2"); // mật khẩu dummy
-            newUser.setProvider("google");
+            newUser.setFullName(name != null ? name : "No Name");
+            newUser.setEmail(email != null ? email : "no-email");
+            newUser.setPassword("oauth2"); // dummy password
+            newUser.setProviderId(providerId);
+            newUser.setProvider(provider); // ví dụ: GOOGLE hoặc FACEBOOK
             newUser.setRole(Users.Role.USER);
+
             return userDao.save(newUser);
         });
-        redirectAttributes.addFlashAttribute("username",name!=null?name:email);
+        redirectAttributes.addFlashAttribute("username",name != null ? name : email);
         return "redirect:/homePage";
 
     }
