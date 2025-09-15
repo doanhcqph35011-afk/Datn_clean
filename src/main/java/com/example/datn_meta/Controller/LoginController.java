@@ -45,16 +45,7 @@ public class LoginController {
     public String showLoginForm() {
         return "Auth/login"; // => templates/Auth/login.html
     }
-
-//    private Users.Role toRole(String roleStr) {
-//        if (roleStr == null || roleStr.isBlank()) return Users.Role.USER; // mặc định
-//        try {
-//            return Users.Role.valueOf(roleStr.trim().toUpperCase());
-//        } catch (IllegalArgumentException ex) {
-//            return Users.Role.USER; // giá trị không hợp lệ -> fallback
-//        }
-//    }
-
+    // Khổ vlin
     // Hiển thị form đăng ký
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
