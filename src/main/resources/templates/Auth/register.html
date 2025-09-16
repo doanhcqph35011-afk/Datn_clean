@@ -81,7 +81,7 @@
                 <form th:action="@{/auth/register}" method="post" th:object="${user}">
                     <h4 class="text-center mb-4">Đăng ký tài khoản</h4>
                     <div class="text-center mt-3">
-                        <a href="/Login">Bạn đã có tài khoản? Đăng nhập ngay</a>
+                        <a th:href="@{/auth/login}">Bạn đã có tài khoản? Đăng nhập ngay</a>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Họ Và Tên</label>

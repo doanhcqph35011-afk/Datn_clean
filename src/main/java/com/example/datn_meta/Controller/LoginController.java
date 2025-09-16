@@ -40,89 +40,78 @@ public class LoginController {
     UserDao userDao;
     @Autowired
     PasswordEncoder passwordEncoder;
+
     // Hiển thị form login
     @GetMapping("/login")
     public String showLoginForm() {
         return "Auth/login"; // => templates/Auth/login.html
     }
-    // Khổ vlin
     // Hiển thị form đăng ký
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("user", new Users());
-        return "Auth/register"; // => templates/Auth/register.html
+        return "Auth/register"; // templates/Auth/register.html
     }
+
+    // Xử lý đăng ký
     @PostMapping("/register")
     public String register(@ModelAttribute("user") Users user,
                            RedirectAttributes redirectAttributes,
                            @RequestParam("confirmPassword") String confirmPassword) {
 
-        String email = (user.getEmail() != null) ? user.getEmail().trim().toLowerCase() : null;
-        String phone = (user.getPhoneNumber() != null) ? user.getPhoneNumber().trim() : null;
-        user.setEmail((email != null && !email.isEmpty()) ? email : null);
-        user.setPhoneNumber((phone != null && !phone.isEmpty()) ? phone : null);
-
-        // Chuẩn hoá dữ liệu: "" => null
-        if (user.getEmail() != null && user.getEmail().isBlank()) {
-            user.setEmail(null);
-        }
-        if (user.getPhoneNumber() != null && user.getPhoneNumber().isBlank()) {
-            user.setPhoneNumber(null);
-        }
         // Check confirmPassword
         if (user.getPassword() == null || !user.getPassword().equals(confirmPassword)) {
             redirectAttributes.addFlashAttribute("error", "Mật khẩu nhập lại không khớp!");
             return "redirect:/auth/register";
         }
 
-        // Check email tồn tại
-        if (user.getEmail() != null && !user.getEmail().isBlank()
-                && userDao.findByEmail(user.getEmail()).isPresent()) {
+        // Nếu email đã tồn tại
+        if (user.getEmail() != null && userDao.findByEmail(user.getEmail()).isPresent()) {
             redirectAttributes.addFlashAttribute("error", "Email đã được đăng ký!");
             return "redirect:/auth/register";
         }
 
-        // Check sdt tồn tại
-        if (user.getPhoneNumber() != null && !user.getPhoneNumber().isBlank()
-                && userDao.findByPhoneNumber(user.getPhoneNumber()).isPresent()) {
+        // Nếu SĐT đã tồn tại
+        if (user.getPhoneNumber() != null && userDao.findByPhoneNumber(user.getPhoneNumber()).isPresent()) {
             redirectAttributes.addFlashAttribute("error", "Số điện thoại đã được đăng ký!");
             return "redirect:/auth/register";
         }
 
-        // Nếu cả email và sdt đều null → báo lỗi
-        if ((user.getEmail() == null || user.getEmail().isBlank()) &&
-                (user.getPhoneNumber() == null || user.getPhoneNumber().isBlank())) {
-            redirectAttributes.addFlashAttribute("error", "Bạn phải nhập Email hoặc Số điện thoại!");
+        // Nếu cả email và phone đều null
+        if (user.getEmail() == null && user.getPhoneNumber() == null) {
+            redirectAttributes.addFlashAttribute("error", "Bạn phải nhập Email hoặc SĐT!");
             return "redirect:/auth/register";
         }
 
-        // FIX: mã hoá mật khẩu
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // Thiết lập giá trị mặc định
         user.setRole(Users.Role.USER);
         user.setProvider("local");
         user.setCreatedAt(LocalDateTime.now());
 
-        try {
-            userDao.save(user);
-        } catch (DataIntegrityViolationException ex) {
-            // FIX: phòng DB ném lỗi unique index
-            redirectAttributes.addFlashAttribute("error", "Email hoặc SĐT đã tồn tại!");
-            return "redirect:/auth/register";
+        // Gán provider_id duy nhất cho local user
+        if (user.getProvider().equals("local")) {
+            user.setProviderId(user.getEmail() != null ? user.getEmail() : user.getPhoneNumber());
         }
 
-        // OK
-        redirectAttributes.addFlashAttribute("success", "Đăng ký thành công! Vui lòng đăng nhập.");
-        return "redirect:/auth/login";
-
+        try {
+            userDao.save(user);
+            redirectAttributes.addFlashAttribute("success", "Đăng ký thành công! Vui lòng đăng nhập.");
+            return "redirect:/auth/login";
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("error", "Lỗi khi lưu user: " + e.getMessage());
+            return "redirect:/auth/register";
+        }
     }
 
     // Xử lý login
-    @PostMapping("/auth/login")
-    public String login(String username, String password,
+    @PostMapping("/login")
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password,
                         RedirectAttributes redirectAttributes) {
         Optional<Users> userOpt;
 
-        // Xác định login bằng email hay phone
+        // Check login bằng email hoặc phone
         if (username.contains("@")) {
             userOpt = userDao.findByEmail(username);
         } else {
@@ -133,40 +122,67 @@ public class LoginController {
             redirectAttributes.addFlashAttribute("error", "Tài khoản không tồn tại!");
             return "redirect:/auth/login";
         }
+
         Users user = userOpt.get();
 
-        // Kiểm tra mật khẩu
-        if (!passwordEncoder.matches(password, user.getPassword())) {
+        // So sánh mật khẩu (không mã hóa)
+        if (!password.equals(user.getPassword())) {
             redirectAttributes.addFlashAttribute("error", "Sai mật khẩu!");
             return "redirect:/auth/login";
         }
 
-        // Nếu login thành công → chuyển sang home
+        // Thành công
         redirectAttributes.addFlashAttribute("username", user.getFullName());
         return "redirect:/homePage";
     }
 
-    @GetMapping("oauth2/success")
-    public String oauth2success(Authentication authentication, RedirectAttributes redirectAttributes, OAuth2UserRequest userRequest) {
+    @GetMapping("/oauth2/success")
+    public String oauth2success(Authentication authentication,
+                                RedirectAttributes redirectAttributes) {
+
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+
+        // Lấy thông tin cơ bản từ OAuth2 provider
         String email = oAuth2User.getAttribute("email");
         String name = oAuth2User.getAttribute("name");
-        String providerId = oAuth2User.getAttribute("id");
-        String provider = authentication.getAuthorities().toString(); // phân biệt gg/fb nếu cần
-        // Lưu user nếu chưa tồn tại
-        userDao.findByEmail(email).orElseGet(() -> {
-            Users newUser = new Users();
-            newUser.setFullName(name != null ? name : "No Name");
-            newUser.setEmail(email != null ? email : "no-email");
-            newUser.setPassword("oauth2"); // dummy password
-            newUser.setProviderId(providerId);
-            newUser.setProvider(provider); // ví dụ: GOOGLE hoặc FACEBOOK
-            newUser.setRole(Users.Role.USER);
+        String providerId = oAuth2User.getAttribute("sub"); // Google dùng "sub"
+        if (providerId == null) {
+            providerId = oAuth2User.getAttribute("id"); // Facebook dùng "id"
+        }
 
-            return userDao.save(newUser);
-        });
-        redirectAttributes.addFlashAttribute("username",name != null ? name : email);
+        // Xác định provider (google / facebook)
+        String provider = "google";
+        if (oAuth2User.getAttribute("picture") == null && oAuth2User.getAttribute("id") != null) {
+            provider = "facebook";
+        }
+
+        // Kiểm tra user trong DB
+        Optional<Users> existingUser = userDao.findByEmail(email);
+
+        Users user;
+        if (existingUser.isPresent()) {
+            // Nếu đã có user → update thông tin
+            user = existingUser.get();
+            user.setFullName(name != null ? name : user.getFullName());
+            user.setProvider(provider);
+            user.setProviderId(providerId);
+        } else {
+            // Nếu chưa có → tạo mới
+            user = new Users();
+            user.setFullName(name != null ? name : "No Name");
+            user.setEmail(email);
+            user.setPassword("oauth2"); // dummy password
+            user.setProvider(provider);
+            user.setProviderId(providerId);
+            user.setRole(Users.Role.USER);
+            user.setCreatedAt(LocalDateTime.now());
+        }
+
+        // Save hoặc update user
+        userDao.save(user);
+
+        // Gửi username ra flash attribute
+        redirectAttributes.addFlashAttribute("username", user.getFullName());
         return "redirect:/homePage";
-
     }
 }

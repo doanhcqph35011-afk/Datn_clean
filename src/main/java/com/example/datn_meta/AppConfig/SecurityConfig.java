@@ -46,13 +46,16 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/homePage", true)     // login thành công -> /home
                         .failureUrl("/auth/login?error=true")// đường dẫn tới login.html
                         .permitAll())
-                .oauth2Login(oauth->oauth
-                        .loginPage("/auth/login")//form login
-                        .defaultSuccessUrl("/homePage", true)
+                .oauth2Login(oauth -> oauth
+                        .loginPage("/auth/login")
+                        .successHandler((request, response, authentication) -> {
+                            // Sau khi login OAuth2 thành công → chuyển về controller để lưu DB
+                            response.sendRedirect("/auth/oauth2/success");
+                        })
                         .failureUrl("/auth/login?error=true")
-                        .userInfoEndpoint(userInfo -> userInfo.userService(oauth2UserService()))// xử lý dữ liệu đăng nhập vào gg/ fb
-
+                        .userInfoEndpoint(userInfo -> userInfo.userService(oauth2UserService()))
                 )
+
 
                 .logout(logout -> logout
                         .logoutUrl("/logout")
