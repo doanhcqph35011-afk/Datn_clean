@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meta Shopping - Thông tin sản phẩm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .thumb { cursor:pointer; border:2px solid transparent; }
+        .thumb.active { border-color:#dc3545; }
+        .btn-heart.active { color:#e0245e; }
+    </style>
+</head>
+<body>
+<nav class="navbar bg-white border-bottom">
+    <div class="container">
+        <a href="index.html" class="navbar-brand fw-bold">Meta Shopping</a>
+        <a class="btn btn-outline-secondary" href="index.html">
+            <i class="bi bi-arrow-left me-1"></i>Về trang chủ
+        </a>
+    </div>
+</nav>
+
+<main class="container py-4">
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <!-- Ảnh chính -->
+            <div class="ratio ratio-4x3 rounded overflow-hidden mb-3 bg-light">
+                <img id="mainImg" src="images/sanpham-1.jpg" class="w-100 h-100 object-fit-cover" alt="Sản phẩm">
+            </div>
+            <!-- Thumbnails -->
+            <div class="d-flex gap-2">
+                <img src="images/sanpham-1.jpg"   class="rounded thumb active" width="80" height="80" alt="thumb">
+                <img src="images/sanpham-2.jpg" class="rounded thumb"        width="80" height="80" alt="thumb">
+                <img src="images/sanpham-3.jpg" class="rounded thumb"        width="80" height="80" alt="thumb">
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb small">
+                    <li class="breadcrumb-item"><a href="homePage.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="#san-pham">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Áo sơ mi Aristino</li>
+                </ol>
+            </nav>
+
+            <h2 id="pName" class="mb-2">Áo sơ mi Aristino</h2>
+            <div id="pPriceText" class="fs-4 text-danger fw-bold mb-3">850,000đ</div>
+            <p class="text-secondary">
+                Chất liệu cotton thoáng mát, form regular fit, thoải mái vận động. Phù hợp đi làm, gặp gỡ đối tác hoặc dạo phố.
+            </p>
+
+            <div class="row g-2 mb-3">
+                <div class="col-6 col-md-4">
+                    <label class="form-label small">Màu sắc</label>
+                    <select id="pColor" class="form-select">
+                        <option>Trắng</option><option>Xanh navy</option><option>Đen</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-4">
+                    <label class="form-label small">Kích thước</label>
+                    <select id="pSize" class="form-select">
+                        <option>M</option><option>L</option><option>XL</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label class="form-label small">Số lượng</label>
+                    <input id="pQty" type="number" class="form-control" value="1" min="1">
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mb-4">
+                <button id="btnAdd" class="btn btn-outline-secondary">
+                    <i class="bi bi-bag-plus me-1"></i>Thêm giỏ hàng
+                </button>
+                <button id="btnBuy" class="btn btn-danger">
+                    Mua ngay
+                </button>
+                <button id="btnFav" class="btn btn-outline-dark btn-heart">
+                    <i class="bi bi-heart me-1"></i>Yêu thích
+                </button>
+            </div>
+
+            <div class="card">
+                <div class="card-header fw-semibold">Mô tả chi tiết</div>
+                <div class="card-body">
+                    - Chất liệu: 98% Cotton, 2% Spandex<br>
+                    - Kiểu dáng: Regular fit<br>
+                    - Bảo quản: Giặt nhẹ, không dùng thuốc tẩy, ủi nhiệt độ thấp.
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="border-top py-4 mt-auto">
+    <div class="container small text-center">© 2025 Aristino. All rights reserved.</div>
+</footer>
+
+<script>
+    /* ===== Cấu hình sản phẩm (static) ===== */
+    const PRODUCT = {
+        id: 'ao-so-mi-aristino',
+        name: document.getElementById('pName').textContent.trim(),
+        price: 850000,
+        images: ['images/sp1.jpg','images/sp1_1.jpg','images/sp1_2.jpg']
+    };
+    const CART_KEY = 'meta_cart_v1';
+    const FAV_KEY  = 'meta_fav_v1';
+
+    /* ===== Helpers ===== */
+    const $  = (s, r=document)=>r.querySelector(s);
+    const $$ = (s, r=document)=>Array.from(r.querySelectorAll(s));
+    const toVND = n => (n||0).toLocaleString('vi-VN')+'đ';
+    const parseIntSafe = v => Math.max(1, parseInt(v,10) || 1);
+    const variantId = (base, color, size) =>
+        (base + '-' + color + '-' + size).toLowerCase()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+            .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+
+    /* ===== Ảnh thumbnail -> ảnh lớn ===== */
+    (function bindThumbs(){
+        const main = $('#mainImg');
+        $$('.thumb').forEach((t,i)=>{
+            t.addEventListener('click', ()=>{
+                $$('.thumb').forEach(x=>x.classList.remove('active'));
+                t.classList.add('active');
+                main.src = t.src;
+                main.alt = 'Sản phẩm hình ' + (i+1);
+            });
+        });
+    })();
+
+    /* ===== LocalStorage Cart ===== */
+    function loadCart(){ try{return JSON.parse(localStorage.getItem(CART_KEY))||[]}catch(_){return[]} }
+    function saveCart(items){ localStorage.setItem(CART_KEY, JSON.stringify(items)); }
+    function addToCart(item){
+        const items = loadCart();
+        const idx = items.findIndex(x=>x.id===item.id);
+        if(idx>=0){ items[idx].qty += item.qty; }
+        else { items.push(item); }
+        saveCart(items);
+    }
+
+    /* ===== LocalStorage Favorite ===== */
+    function loadFav(){ try{return JSON.parse(localStorage.getItem(FAV_KEY))||[]}catch(_){return[]} }
+    function saveFav(items){ localStorage.setItem(FAV_KEY, JSON.stringify(items)); }
+    function inFav(id){ return loadFav().some(x=>x.id===id); }
+    function toggleFav(item){
+        const items = loadFav();
+        const i = items.findIndex(x=>x.id===item.id);
+        if(i>=0) items.splice(i,1); else items.push(item);
+        saveFav(items);
+    }
+
+    /* ===== Lấy lựa chọn hiện tại ===== */
+    function currentSelection(){
+        const color = $('#pColor').value.trim();
+        const size  = $('#pSize').value.trim();
+        const qty   = parseIntSafe($('#pQty').value);
+        const image = $('#mainImg').src || PRODUCT.images[0];
+        const id    = variantId(PRODUCT.id, color, size);
+        return {
+            id, name: PRODUCT.name + ` - ${color}/${size}`,
+            price: PRODUCT.price, image, qty
+        };
+    }
+
+    /* ===== Gắn nút hành động ===== */
+    $('#btnAdd').addEventListener('click', ()=>{
+        const it = currentSelection();
+        addToCart(it);
+        const btn = $('#btnAdd');
+        const old = btn.innerHTML;
+        btn.innerHTML = '<i class="bi bi-check2-circle me-1"></i>Đã thêm';
+        setTimeout(()=> btn.innerHTML = old, 1200);
+    });
+
+    $('#btnBuy').addEventListener('click', ()=>{
+        const it = currentSelection();
+        addToCart(it);
+        // báo cho homePage mở giỏ khi load
+        localStorage.setItem('meta_open_cart', '1');
+        // chuyển về trang chủ
+        window.location.href = 'index.html#cart';
+    });
+
+    (function bindFavorite(){
+        const btn = $('#btnFav');
+        const id  = variantId(PRODUCT.id, $('#pColor').value, $('#pSize').value);
+        if(inFav(id)) btn.classList.add('active');
+
+        btn.addEventListener('click', ()=>{
+            const it = currentSelection();
+            toggleFav(it);
+            btn.classList.toggle('active', inFav(it.id));
+        });
+
+        // Nếu đổi màu/size, cập nhật trạng thái nút
+        $('#pColor').addEventListener('change', ()=>{
+            const it = currentSelection();
+            $('#btnFav').classList.toggle('active', inFav(it.id));
+        });
+        $('#pSize').addEventListener('change', ()=>{
+            const it = currentSelection();
+            $('#btnFav').classList.toggle('active', inFav(it.id));
+        });
+    })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
