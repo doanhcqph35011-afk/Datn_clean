@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42936c56-b1cc-4ec6-97bc-4ae47839bdf8" name="Changes" comment="hoang commit">
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Controller/CartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Entity/Cart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Entity/CartRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Entity/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Repository/CartRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Repository/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/resources/templates/Product/product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/AppConfig/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/AppConfig/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datn_clean-main/src/main/resources/templates/App/Product.html" beforeDir="false" />
+    <list default="true" id="42936c56-b1cc-4ec6-97bc-4ae47839bdf8" name="Changes" comment="innit commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +37,11 @@
         </map>
       </branch-storage>
     </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Hoang" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -70,34 +67,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.DatnMetaApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/OS/OneDrive/Máy tính/DATN/Datn_clean-main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.DatnMetaApplication.executor": "Run",
+    "git-widget-placeholder": "Hoang",
+    "last_opened_file_path": "C:/Users/OS/OneDrive/Máy tính/DATN/Datn_clean-main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "configurable.group.language",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Datn_clean-main\Datn_clean-main\src\main" />
       <recent name="C:\Users\OS\OneDrive\Máy tính\DATN\Datn_clean-main\Datn_clean-main\src\main\resources\templates\Auth" />
       <recent name="C:\Users\OS\OneDrive\Máy tính\DATN\Datn_clean-main\Datn_clean-main\src\main\resources\templates\Product" />
     </key>
