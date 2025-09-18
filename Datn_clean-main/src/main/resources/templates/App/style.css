@@ -1,0 +1,38 @@
+/* Brand button */
+.btn-brand {
+    background-color: #ff4d4f;
+    color: #fff;
+}
+.btn-brand:hover {
+    background-color: #e03e3f;
+    color: #fff;
+}
+
+/* Hidden state */
+.hidden { display: none !important; }
+
+/* Wishlist toggle */
+.wish-toggle.active { color: #e0245e !important; }
+
+/* Footer */
+.text-footer { color: #ccc !important; }
+.text-copy { color: #aaa !important; }
+
+/* Banner responsive */
+#bannerCarousel img {
+    height: 400px;
+    object-fit: cover;
+}
+@media (max-width: 768px) {
+    #bannerCarousel img { height: 260px; }
+}
+@media (max-width: 480px) {
+    #bannerCarousel img { height: 200px; }
+}
+
+/* Ensure CSKH always on top */
+#ms-chatbox,
+#cskhPanel,
+#cskhFab {
+    z-index: 2000 !important;
+}
