@@ -1,392 +1,578 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meta Shopping</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Meta Shopping</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+      /* Brand button */
+.btn-brand {
+    background-color: #ff4d4f;
+    color: #fff;
+}
+.btn-brand:hover {
+    background-color: #e03e3f;
+    color: #fff;
+}
 
-    body {
-      background: #fff;
-      color: #333;
-    }
+/* Hidden state */
+.hidden { display: none !important; }
 
-    /* HEADER */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #f8f8f8;
-      padding: 15px 20px;
-      border-bottom: 1px solid #ddd;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      flex-wrap: wrap;
-    }
+/* Wishlist toggle */
+.wish-toggle.active { color: #e0245e !important; }
 
-    header .logo {
-      font-size: 22px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      flex: 1;
-    }
+/* Footer */
+.text-footer { color: #ccc !important; }
+.text-copy { color: #aaa !important; }
 
-    .navbar {
-      flex: 2;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+/* Banner responsive */
+#bannerCarousel img {
+    height: 400px;
+    object-fit: cover;
+}
+@media (max-width: 768px) {
+    #bannerCarousel img { height: 260px; }
+}
+@media (max-width: 480px) {
+    #bannerCarousel img { height: 200px; }
+}
 
-    .navbar a {
-      margin: 5px 10px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
+/* Ensure CSKH always on top */
+#ms-chatbox,
+#cskhPanel,
+#cskhFab {
+    z-index: 2000 !important;
+}
 
-    .navbar a:hover {
-      color: #c00;
-    }
-
-    .header-icons {
-      flex: 1;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .header-icons input {
-      padding: 6px 10px;
-      border: 1px solid #ccc;
-      border-radius: 20px;
-      margin-right: 10px;
-      flex: 1;
-      min-width: 100px;
-    }
-
-    .icon {
-      margin-left: 8px;
-      font-size: 20px;
-      text-decoration: none;
-      color: #333;
-    }
-
-    /* BANNER */
-    .banner {
-      width: 100%;
-      max-height: 400px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .banner .slides {
-      display: flex;
-      width: 300%;
-      animation: slide 12s infinite;
-    }
-
-    .banner img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-      flex: 1 0 100%;
-    }
-
-    @keyframes slide {
-      0%   { transform: translateX(0%); }
-      25%  { transform: translateX(0%); }
-      35%  { transform: translateX(-100%); }
-      60%  { transform: translateX(-100%); }
-      70%  { transform: translateX(-200%); }
-      95%  { transform: translateX(-200%); }
-      100% { transform: translateX(0%); }
-    }
-
-    /* PRODUCTS */
-    .products {
-      padding: 30px 20px;
-    }
-
-    .products h2 {
-      text-align: center;
-      font-size: 26px;
-      margin-bottom: 25px;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 16px;
-      text-align: center;
-      background: #fff;
-      transition: transform 0.2s;
-    }
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
-    .product-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 12px;
-    }
-    .product-card h3 {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-    .product-card .price {
-      color: red;
-      font-weight: bold;
-      font-size: 16px;
-      margin-bottom: 12px;
-    }
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .btn {
-      flex: 1;
-      padding: 8px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .add-to-cart {
-      background: #f5f5f5;
-      color: #333;
-    }
-    .add-to-cart:hover {
-      background: #ddd;
-    }
-    .buy-now {
-      background: #ff4d4f;
-      color: white;
-    }
-    .buy-now:hover {
-      background: #e03e3f;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .load-more-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .btn.load-more {
-      background: #007bff;
-      color: white;
-      padding: 12px 25px;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    .btn.load-more:hover {
-      background: #0056b3;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #222;
-      color: #ccc;
-      padding: 30px 20px;
-      margin-top: 30px;
-    }
-
-    .footer-content {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .footer-content div {
-      flex: 1;
-      min-width: 200px;
-    }
-
-    .footer-content h4 {
-      margin-bottom: 10px;
-      color: #fff;
-    }
-
-    .copy {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 14px;
-      color: #aaa;
-    }
-
-    /* RESPONSIVE */
-    @media(max-width: 768px){
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .navbar {
-        justify-content: flex-start;
-      }
-      .banner {
-        height: 200px;
-      }
-    }
-
-    @media(max-width: 480px){
-      .header-icons {
-        justify-content: center;
-        margin-top: 10px;
-      }
-      .product-card h3 {
-        font-size: 16px;
-      }
-      .product-card p {
-        font-size: 14px;
-      }
-      footer {
-        text-align: center;
-      }
-    }
-  </style>
+        /* Custom styles for brand colors and elements */
+        .btn-brand { background-color: #ff4d4f; color: #fff; }
+        .btn-brand:hover { background-color: #e03e3f; color: #fff; }
+        .hidden { display: none !important; }
+        .wish-toggle.active { color: #e0245e !important; }
+        .text-footer { color: #ccc !important; }
+        .text-copy { color: #aaa !important; }
+    </style>
 </head>
 <body>
+<!-- HEADER: Navbar with brand, navigation links, search, account, wishlist, cart -->
+<nav class="navbar sticky-top navbar-expand-md navbar-light bg-light border-bottom">
+    <div class="container-fluid px-4">
+        <!-- Brand Logo and Name -->
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true">
+                <defs>
+                    <linearGradient id="g-meta" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#ff6b6d"/>
+                        <stop offset="100%" stop-color="#c71f1f"/>
+                    </linearGradient>
+                </defs>
+                <rect x="2" y="2" width="32" height="32" rx="9" fill="url(#g-meta)"/>
+                <path d="M10 25 L10 11 L14.5 18 L18 13 L21.5 18 L26 11 L26 25" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="fw-bold" style="font-size:22px; color:#ff4d4f; margin-left:8px;">Meta Shopping</span>
+        </a>
+        <!-- Icons (Account, Wishlist, Cart) and Navbar Toggler -->
+        <div class="d-flex align-items-center order-md-3">
+            <span class="d-none d-md-inline text-muted small me-3">Xin chào, User</span>
+            <a href="#" class="me-3 icon position-relative" id="accountBtn" title="Tài khoản">👤</a>
+            <a href="#" class="me-3 icon position-relative" id="favBtn" title="Yêu thích" data-bs-toggle="offcanvas" data-bs-target="#favDrawer">
+                ❤️ <span id="favBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            </a>
+            <a href="#" class="me-3 icon position-relative" id="cartBtn" title="Giỏ hàng" data-bs-toggle="offcanvas" data-bs-target="#cartDrawer">
+                🛒 <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <!-- Collapsible Nav Links and Search Form -->
+        <div class="collapse navbar-collapse order-md-2" id="mainNavbar">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <li class="nav-item"><a class="nav-link active" href="#">Trang Chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Sản Phẩm</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Bộ Sưu Tập</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Tin Tức</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Liên Hệ</a></li>
+            </ul>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm..." aria-label="Tìm kiếm">
+                <button class="btn btn-outline-secondary" type="submit">🔍</button>
+            </form>
+        </div>
+    </div>
+</nav>
 
-<!-- HEADER -->
-<header>
-  <div class="logo">Meta Shopping</div>
-  <nav class="navbar">
-    <a href="#">Trang Chủ</a>
-    <a href="#">Sản Phẩm</a>
-    <a href="#">Bộ Sưu Tập</a>
-    <a href="#">Tin Tức</a>
-    <a href="#">Liên Hệ</a>
-  </nav>
-  <div class="header-icons">
-    <input type="text" placeholder="Tìm kiếm...">
-    <span>Xin chào, <span th:text="${username}">User</span>!</span>
-    <a href="#" class="icon">👤</a>
-    <a href="#" class="icon">🛒</a>
-  </div>
-</header>
-
-<!-- BODY -->
+<!-- MAIN CONTENT -->
 <main>
-  <section class="banner">
-    <div class="slides">
-      <img src="https://via.placeholder.com/1600x400/ff4d4f/ffffff?text=Banner+1" alt="Banner 1">
-      <img src="https://via.placeholder.com/1600x400/222/ffffff?text=Banner+2" alt="Banner 2">
-      <img src="https://via.placeholder.com/1600x400/007bff/ffffff?text=Banner+3" alt="Banner 3">
-    </div>
-  </section>
+    <!-- Banner Carousel -->
+    <section class="my-4 px-3">
+        <div id="bannerCarousel"
+             class="carousel slide carousel-fade rounded-4 shadow-sm w-100"
+             data-bs-ride="carousel" data-bs-interval="2500"
+             style="overflow:hidden;">
 
-  <section class="products">
-    <h2>Sản phẩm bán chạy</h2>
-    <div class="product-grid" id="productGrid">
-      <!-- Sản phẩm 1 -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="sp1">
-        <h3>Áo sơ mi Aristino</h3>
-        <p class="price">850,000đ</p>
-        <div class="actions">
-          <button class="btn add-to-cart">Thêm Giỏ hàng</button>
-          <button class="btn buy-now">Mua ngay</button>
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <!-- Slides -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/images/banner-1.jpg" class="d-block w-100 rounded-4" alt="Banner 1"
+                         style="height:400px; object-fit:cover;">
+                    <div class="carousel-caption text-center">
+                        <h5 class="fw-bold text-white">Ưu đãi giữa mùa – Tiết kiệm tới 50%</h5>
+                        <a href="#" class="btn btn-brand rounded-pill px-4">Mua ngay</a>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="/images/banner-2.jpg" class="d-block w-100 rounded-4" alt="Banner 2"
+                         style="height:400px; object-fit:cover;">
+                    <div class="carousel-caption text-center">
+                        <h5 class="fw-bold text-white">Bộ sưu tập mới – Chất vải cao cấp</h5>
+                        <a href="#" class="btn btn-brand rounded-pill px-4">Xem bộ sưu tập</a>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="/images/banner-3.jpg" class="d-block w-100 rounded-4" alt="Banner 3"
+                         style="height:400px; object-fit:cover;">
+                    <div class="carousel-caption text-center">
+                        <h5 class="fw-bold text-white">Member Day – Ưu đãi riêng</h5>
+                        <a href="#" class="btn btn-brand rounded-pill px-4">Tham gia ngay</a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Sản phẩm 2 -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="sp2">
-        <h3>Áo Polo Aristino</h3>
-        <p class="price">650,000đ</p>
-        <div class="actions">
-          <button class="btn add-to-cart">Thêm Giỏ hàng</button>
-          <button class="btn buy-now">Mua ngay</button>
+
+
+    <!-- Products Section -->
+    <section class="products py-4 px-4">
+        <h2 class="text-center mb-4">Sản phẩm bán chạy</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="productGrid">
+            <!-- Product 1 -->
+            <div class="product-card card h-100 text-center shadow-sm border-0 position-relative">
+                <img src="/images/sanpham-1.jpg" class="card-img-top" alt="Áo sơ mi Aristino">
+                <div class="card-body">
+                    <h3 class="h6 card-title">Áo sơ mi Aristino</h3>
+                    <p class="price text-danger fw-bold fs-6 mb-3">850,000đ</p>
+                    <button class="btn btn-outline-secondary add-to-cart" data-id="ao-so-mi-aristino">Thêm Giỏ hàng</button>
+                    <button class="btn btn-brand rounded-pill ms-2 buy-now" data-id="ao-so-mi-aristino">Mua ngay</button>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card card h-100 text-center shadow-sm border-0 position-relative">
+                <img src="/images/sanpham-2.jpg" class="card-img-top" alt="Áo Polo Aristino">
+                <div class="card-body">
+                    <h3 class="h6 card-title">Áo Polo Aristino</h3>
+                    <p class="price text-danger fw-bold fs-6 mb-3">650,000đ</p>
+                    <button class="btn btn-outline-secondary add-to-cart" data-id="ao-polo-aristino">Thêm Giỏ hàng</button>
+                    <button class="btn btn-brand rounded-pill ms-2 buy-now" data-id="ao-polo-aristino">Mua ngay</button>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card card h-100 text-center shadow-sm border-0 position-relative">
+                <img src="/images/sanpham-3.jpg" class="card-img-top" alt="Quần âu Aristino">
+                <div class="card-body">
+                    <h3 class="h6 card-title">Quần âu Aristino</h3>
+                    <p class="price text-danger fw-bold fs-6 mb-3">950,000đ</p>
+                    <button class="btn btn-outline-secondary add-to-cart" data-id="quan-au-aristino">Thêm Giỏ hàng</button>
+                    <button class="btn btn-brand rounded-pill ms-2 buy-now" data-id="quan-au-aristino">Mua ngay</button>
+                </div>
+            </div>
+            <!-- Product 4 (initially hidden, revealed by "Xem thêm" button) -->
+            <div class="product-card card h-100 text-center shadow-sm border-0 position-relative hidden">
+                <img src="/images/sanpham-4.jpg" class="card-img-top" alt="Áo Khoác Bomber">
+                <div class="card-body">
+                    <h3 class="h6 card-title">Áo Khoác Bomber</h3>
+                    <p class="price text-danger fw-bold fs-6 mb-3">1,200,000đ</p>
+                    <button class="btn btn-outline-secondary add-to-cart" data-id="ao-khoac-bomber">Thêm Giỏ hàng</button>
+                    <button class="btn btn-brand rounded-pill ms-2 buy-now" data-id="ao-khoac-bomber">Mua ngay</button>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <!-- Sản phẩm 3 -->
-      <div class="product-card">
-        <img src="https://via.placeholder.com/200" alt="sp3">
-        <h3>Quần âu Aristino</h3>
-        <p class="price">950,000đ</p>
-        <div class="actions">
-          <button class="btn add-to-cart">ThêmGiỏ hàng</button>
-          <button class="btn buy-now">Mua ngay</button>
+        <div class="text-center mt-4">
+            <button id="loadMore" class="btn btn-primary">Xem thêm sản phẩm</button>
         </div>
-      </div>
-
-      <!-- Sản phẩm 4 (ẩn) -->
-      <div class="product-card hidden">
-        <img src="https://via.placeholder.com/200" alt="sp4">
-        <h3>Áo Khoác Bomber</h3>
-        <p class="price">1,200,000đ</p>
-        <div class="actions">
-          <button class="btn add-to-cart">+ Giỏ hàng</button>
-          <button class="btn buy-now">Mua ngay</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Nút xem thêm -->
-    <div class="load-more-container">
-      <button id="loadMore" class="btn load-more">Xem thêm sản phẩm</button>
-    </div>
-  </section>
+    </section>
 </main>
 
 <!-- FOOTER -->
-<footer>
-  <div class="footer-content">
-    <div>
-      <h4>Liên hệ</h4>
-      <p>Hotline: 1800 8888</p>
-      <p>Email: support@aristino.com</p>
+<footer class="bg-dark text-light mt-5">
+    <div class="container py-4 px-4">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <h4 class="text-white">Liên hệ</h4>
+                <p class="text-footer mb-1">Hotline: 1800 8888</p>
+                <p class="text-footer">Email: support@aristino.com</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h4 class="text-white">Chính sách</h4>
+                <p class="text-footer mb-1">Điều khoản dịch vụ</p>
+                <p class="text-footer">Chính sách bảo mật</p>
+            </div>
+            <div class="col-md-4 mb-3">
+                <h4 class="text-white">Kết nối</h4>
+                <p class="text-footer">Facebook | Instagram | YouTube</p>
+            </div>
+        </div>
+        <p class="text-center text-copy mt-3 small">© 2025 Aristino. All rights reserved.</p>
     </div>
-    <div>
-      <h4>Chính sách</h4>
-      <p>Điều khoản dịch vụ</p>
-      <p>Chính sách bảo mật</p>
+    <!-- Customer Support Floating Button -->
+    <button class="btn btn-brand rounded-pill shadow-lg" id="cskhFab"
+            style="position:fixed; right:20px; bottom:20px; z-index:2000;">
+        💬 CSKH
+    </button>
+    <!-- Customer Support Quick Links Panel -->
+    <div class="card shadow" id="cskhPanel" role="dialog" aria-modal="true" aria-labelledby="cskhTitle"
+         style="position:fixed; right:20px; bottom:80px; width:280px; display:none; z-index:2000; padding:14px;">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <strong id="cskhTitle">Hỗ trợ khách hàng</strong>
+            <button class="btn-close" id="cskhClose" aria-label="Đóng"></button>
+        </div>
+        <a href="tel:18008888" class="d-block text-decoration-none text-dark mb-2">📞 Gọi: 1800 8888</a>
+        <a href="mailto:support@aristino.com?subject=Ho%20tro%20don%20hang"
+           class="d-block text-decoration-none text-dark mb-2">✉️ Email: support@aristino.com</a>
+        <a href="https://zalo.me/0909123456" target="_blank" rel="noopener"
+           class="d-block text-decoration-none text-dark mb-2">💬 Zalo: 0909 123 456</a>
+        <a href="/contact" class="d-block text-decoration-none text-dark">📝 Form liên hệ</a>
     </div>
-    <div>
-      <h4>Kết nối</h4>
-      <p>Facebook | Instagram | YouTube</p>
-    </div>
-  </div>
-  <p class="copy">© 2025 Aristino. All rights reserved.</p>
 </footer>
 
-<!-- JS -->
+<!-- Chat Box (Customer Support Chatbot) -->
+<div id="ms-chatbox" class="card shadow" style="position:fixed; right:20px; bottom:90px; width:320px; max-width:92vw; display:none; z-index:1400;">
+    <div class="card-header d-flex justify-content-between align-items-center p-2">
+        <strong>Trợ lý CSKH</strong>
+        <button id="ms-chat-close" aria-label="Đóng" class="btn-close"></button>
+    </div>
+    <div id="ms-chat-log" class="card-body" style="height:280px; overflow:auto; font-size:14px;">
+        <div><b>Bot:</b> Xin chào! Mình có thể giúp gì cho bạn?</div>
+    </div>
+    <form id="ms-chat-form" class="d-flex p-2 border-top">
+        <input id="ms-chat-input" class="form-control me-2" placeholder="Nhập câu hỏi..." />
+        <button type="submit" class="btn btn-brand">Gửi</button>
+    </form>
+</div>
+
+<!-- Cart Offcanvas (Shopping Cart Sidebar) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartTitle">
+    <div class="offcanvas-header">
+        <h5 id="cartTitle" class="offcanvas-title">Giỏ hàng</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+        <div id="cartList" class="flex-grow-1"><!-- Cart items will be injected here --></div>
+        <div class="mt-3 border-top pt-3">
+            <div class="d-flex justify-content-between mb-3">
+                <span class="fw-bold">Tổng:</span>
+                <span id="cartTotal" class="fw-bold">0đ</span>
+            </div>
+            <div class="d-flex">
+                <button id="cartClear" class="btn btn-outline-secondary me-2">Xóa giỏ</button>
+                <button id="cartCheckout" class="btn btn-primary">Thanh toán</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Favorites Offcanvas (Wishlist Sidebar) -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="favDrawer" aria-labelledby="favTitle">
+    <div class="offcanvas-header">
+        <h5 id="favTitle" class="offcanvas-title">Yêu thích</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Đóng"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column">
+        <div id="favList" class="flex-grow-1"><!-- Favorite items will be injected here --></div>
+        <div class="mt-3 border-top pt-3 text-end">
+            <button id="favClear" class="btn btn-outline-secondary">Xóa yêu thích</button>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Bundle JS (with Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Scripts -->
 <script>
-  document.getElementById("loadMore").addEventListener("click", function () {
-    let hiddenProducts = document.querySelectorAll(".product-card.hidden");
-    for (let i = 0; i < 2 && i < hiddenProducts.length; i++) {
-      hiddenProducts[i].classList.remove("hidden");
-    }
-    if (document.querySelectorAll(".product-card.hidden").length === 0) {
-      this.style.display = "none";
-    }
-  });
+    // Load more products
+    document.getElementById("loadMore").addEventListener("click", function() {
+        const hiddenItems = document.querySelectorAll(".product-card.hidden");
+        for (let i = 0; i < 2 && i < hiddenItems.length; i++) {
+            hiddenItems[i].classList.remove("hidden");
+        }
+        if (document.querySelectorAll(".product-card.hidden").length === 0) {
+            this.style.display = "none";
+        }
+    });
+
+    // CSKH Panel toggle
+    (function() {
+        const fab = document.getElementById('cskhFab');
+        const panel = document.getElementById('cskhPanel');
+        const closeBtn = document.getElementById('cskhClose');
+        fab.addEventListener('click', () => {
+            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+        });
+        closeBtn.addEventListener('click', () => { panel.style.display = 'none'; });
+        document.addEventListener('click', (e) => {
+            if (panel.style.display === 'block' && !panel.contains(e.target) && e.target !== fab) {
+                panel.style.display = 'none';
+            }
+        });
+    })();
+
+    // CSKH Chat box
+    (function() {
+        const fab = document.getElementById('cskhFab');
+        const chatbox = document.getElementById('ms-chatbox');
+        const closeBtn = document.getElementById('ms-chat-close');
+        const form = document.getElementById('ms-chat-form');
+        const input = document.getElementById('ms-chat-input');
+        const log = document.getElementById('ms-chat-log');
+
+        fab.addEventListener('click', (e) => {
+            e.preventDefault();
+            chatbox.style.display = chatbox.style.display === 'block' ? 'none' : 'block';
+            if (chatbox.style.display === 'block') input.focus();
+        });
+        closeBtn.addEventListener('click', () => { chatbox.style.display = 'none'; });
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const text = input.value.trim();
+            if (!text) return;
+            log.insertAdjacentHTML('beforeend', `<div><b>Bạn:</b> ${text}</div>`);
+            input.value = '';
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ message: text, sessionId: crypto.randomUUID() })
+                });
+                const data = await response.json();
+                log.insertAdjacentHTML('beforeend', `<div><b>Bot:</b> ${data.answer || '...'}</div>`);
+                log.scrollTop = log.scrollHeight;
+                if (data.handoff) {
+                    log.insertAdjacentHTML('beforeend', `<div><button id="ms-handoff" class="btn btn-outline-secondary btn-sm mt-2">Nối máy CSKH</button></div>`);
+                    document.getElementById('ms-handoff').onclick = () => { window.location.href = '/contact'; };
+                }
+            } catch(err) {
+                log.insertAdjacentHTML('beforeend', `<div><i>Lỗi mạng, thử lại sau.</i></div>`);
+            }
+        });
+    })();
+
+    // === CART & WISHLIST ===
+    (function() {
+        const CART_KEY = 'meta_cart_v1';
+        const FAV_KEY = 'meta_fav_v1';
+        const cartListElem = document.getElementById('cartList');
+        const cartTotalElem = document.getElementById('cartTotal');
+        const cartBadge = document.getElementById('cartBadge');
+        const favBadge = document.getElementById('favBadge');
+        const favListElem = document.getElementById('favList');
+
+        const toVND = n => (n || 0).toLocaleString('vi-VN') + 'đ';
+        const parsePrice = t => parseInt((t || '').toString().replace(/[^\d]/g, '') || '0', 10);
+        const slug = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || Math.random().toString(36).slice(2);
+
+        function loadCart() { try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch(e) { return []; } }
+        function saveCart(items) { localStorage.setItem(CART_KEY, JSON.stringify(items)); }
+        function loadFav() { try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch(e) { return []; } }
+        function saveFav(items) { localStorage.setItem(FAV_KEY, JSON.stringify(items)); }
+
+        function updateCartBadge() {
+            const totalQty = loadCart().reduce((sum, item) => sum + (item.qty || 0), 0);
+            cartBadge.textContent = totalQty;
+        }
+        function updateFavBadge() { favBadge.textContent = loadFav().length; }
+
+        function renderCart() {
+            const items = loadCart();
+            cartListElem.innerHTML = items.length ? '' : '<p>Giỏ hàng trống.</p>';
+            let total = 0;
+            items.forEach(item => {
+                total += (item.price || 0) * (item.qty || 1);
+                const row = document.createElement('div');
+                row.className = 'd-flex align-items-center mb-3';
+                row.dataset.id = item.id;
+                row.innerHTML = `
+        <img src="${item.image || 'https://via.placeholder.com/64'}" alt="${item.name}"
+             style="width:64px; height:64px; object-fit:cover; border-radius:8px; margin-right:10px;">
+        <div class="flex-grow-1">
+          <div class="fw-semibold">${item.name}</div>
+          <div class="text-danger fw-bold">${toVND(item.price)}</div>
+          <div class="d-flex align-items-center mt-1">
+            <button class="btn btn-sm btn-light px-2 py-1 me-2 dec" aria-label="Giảm">-</button>
+            <span>${item.qty}</span>
+            <button class="btn btn-sm btn-light px-2 py-1 ms-2 inc" aria-label="Tăng">+</button>
+          </div>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary remove-btn" title="Xóa">🗑️</button>`;
+                cartListElem.appendChild(row);
+            });
+            cartTotalElem.textContent = toVND(total);
+            updateCartBadge();
+        }
+
+        function renderFav() {
+            const items = loadFav();
+            favListElem.innerHTML = items.length ? '' : '<p>Chưa có sản phẩm yêu thích.</p>';
+            items.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'd-flex align-items-center mb-3';
+                row.dataset.id = item.id;
+                row.innerHTML = `
+        <img src="${item.image || 'https://via.placeholder.com/64'}" alt="${item.name}"
+             style="width:64px; height:64px; object-fit:cover; border-radius:8px; margin-right:10px;">
+        <div class="flex-grow-1">
+          <div class="fw-semibold">${item.name}</div>
+          <div class="text-danger fw-bold">${toVND(item.price || 0)}</div>
+          <button class="btn btn-outline-secondary btn-sm mt-2 add-from-fav">Thêm vào giỏ</button>
+        </div>
+        <button class="btn btn-sm btn-outline-secondary remove-btn" title="Bỏ yêu thích">🗑️</button>`;
+                favListElem.appendChild(row);
+            });
+            updateFavBadge();
+        }
+
+        function addToCart(product) {
+            const items = loadCart();
+            const idx = items.findIndex(it => it.id === product.id);
+            if (idx >= 0) items[idx].qty += product.qty || 1;
+            else items.push({ ...product, qty: product.qty || 1 });
+            saveCart(items);
+            renderCart();
+        }
+
+        function toggleFav(item) {
+            const items = loadFav();
+            const idx = items.findIndex(x => x.id === item.id);
+            if (idx >= 0) items.splice(idx, 1); else items.push(item);
+            saveFav(items);
+            updateFavBadge();
+        }
+
+        renderCart();
+        updateFavBadge();
+
+        // Add-to-cart
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const cardElem = e.currentTarget.closest('.product-card');
+                const name = cardElem.querySelector('h3')?.textContent.trim() || 'Sản phẩm';
+                const price = parsePrice(cardElem.querySelector('.price')?.textContent);
+                const image = cardElem.querySelector('img')?.src;
+                const id = btn.dataset.id || slug(name);
+                addToCart({ id, name, price, image, qty: 1 });
+                btn.textContent = 'Đã thêm ✓';
+                setTimeout(() => { btn.textContent = 'Thêm Giỏ hàng'; }, 1200);
+            });
+        });
+
+        // Buy-now
+        document.querySelectorAll('.buy-now').forEach(btn => {
+            btn.addEventListener('click', e => {
+                const cardElem = e.currentTarget.closest('.product-card');
+                const name = cardElem.querySelector('h3')?.textContent.trim() || 'Sản phẩm';
+                const price = parsePrice(cardElem.querySelector('.price')?.textContent);
+                const image = cardElem.querySelector('img')?.src;
+                const id = btn.dataset.id || slug(name);
+                addToCart({ id, name, price, image, qty: 1 });
+                bootstrap.Offcanvas.getOrCreateInstance(document.getElementById('cartDrawer')).show();
+            });
+        });
+
+        // Cart item events
+        cartListElem.addEventListener('click', e => {
+            const row = e.target.closest('div[data-id]');
+            if (!row) return;
+            const id = row.dataset.id;
+            const items = loadCart();
+            const item = items.find(x => x.id === id);
+            if (!item) return;
+            if (e.target.classList.contains('inc')) item.qty++;
+            if (e.target.classList.contains('dec')) item.qty = Math.max(1, item.qty - 1);
+            if (e.target.classList.contains('remove-btn')) items.splice(items.indexOf(item), 1);
+            saveCart(items);
+            renderCart();
+        });
+
+        document.getElementById('cartClear').addEventListener('click', () => { saveCart([]); renderCart(); });
+        document.getElementById('cartCheckout').addEventListener('click', () => { alert('Demo checkout: Chuyển tới trang /checkout.'); });
+
+        favListElem.addEventListener('click', e => {
+            const row = e.target.closest('div[data-id]');
+            if (!row) return;
+            const id = row.dataset.id;
+            const favItems = loadFav();
+            const favItem = favItems.find(x => x.id === id);
+            if (!favItem) return;
+            if (e.target.classList.contains('add-from-fav')) {
+                addToCart({ ...favItem, qty: 1 });
+                bootstrap.Offcanvas.getOrCreateInstance(document.getElementById('cartDrawer')).show();
+            }
+            if (e.target.classList.contains('remove-btn')) {
+                saveFav(favItems.filter(x => x.id !== id));
+                renderFav();
+                const heartBtn = document.querySelector(`.wish-toggle[data-id="${CSS.escape(id)}"]`);
+                if (heartBtn) { heartBtn.classList.remove('active'); heartBtn.innerHTML = '♡'; }
+            }
+        });
+
+        document.getElementById('favClear').addEventListener('click', () => { saveFav([]); renderFav(); });
+
+        function ensureHeartButtons() {
+            document.querySelectorAll('.product-card').forEach(card => {
+                if (card.querySelector('.wish-toggle')) return;
+                const name = card.querySelector('h3')?.textContent.trim() || 'Sản phẩm';
+                const price = parsePrice(card.querySelector('.price')?.textContent);
+                const image = card.querySelector('img')?.src;
+                const id = card.querySelector('.add-to-cart')?.dataset.id || slug(name);
+                const isFav = loadFav().some(x => x.id === id);
+                const btn = document.createElement('button');
+                btn.className = 'wish-toggle btn btn-light shadow-sm position-absolute';
+                btn.style.top = '10px';
+                btn.style.right = '10px';
+                btn.style.width = '34px';
+                btn.style.height = '34px';
+                btn.title = 'Thêm vào yêu thích';
+                btn.dataset.id = id;
+                btn.innerHTML = isFav ? '❤' : '♡';
+                if (isFav) btn.classList.add('active');
+                btn.addEventListener('click', () => {
+                    const willAdd = !loadFav().some(x => x.id === id);
+                    toggleFav({ id, name, price, image });
+                    btn.classList.toggle('active', willAdd);
+                    btn.innerHTML = willAdd ? '❤' : '♡';
+                });
+                card.appendChild(btn);
+            });
+        }
+        ensureHeartButtons();
+
+        const grid = document.getElementById('productGrid');
+        if (grid) {
+            const observer = new MutationObserver(() => ensureHeartButtons());
+            observer.observe(grid, { childList: true });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('meta_open_cart') === '1') {
+                localStorage.removeItem('meta_open_cart');
+                bootstrap.Offcanvas.getOrCreateInstance(document.getElementById('cartDrawer')).show();
+            }
+        });
+
+        document.getElementById('favDrawer').addEventListener('show.bs.offcanvas', () => { renderFav(); });
+    })();
 </script>
 </body>
 </html>
