@@ -284,8 +284,8 @@
   </nav>
   <div class="header-icons">
     <input type="text" placeholder="Tìm kiếm...">
-    <span>Xin chào, <span th:text="${username}">User</span>!</span>
-    <a href="#" class="icon">👤</a>
+    <span>Xin chào, <span th:text="${fullname}"></span></span>
+    <a th:href="@{/account}" class="icon">👤</a>
     <a href="#" class="icon">🛒</a>
   </div>
 </header>

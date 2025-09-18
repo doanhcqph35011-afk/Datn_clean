@@ -28,7 +28,6 @@ public class AuthService {
                 .map( au -> au.getAuthority().substring(5)).toList();
     }
 
-
     public boolean hasAnyRoles (String... roleToCheck){
         var grantedRoles = this.getRoles();
         return Stream.of(roleToCheck).anyMatch(grantedRoles::contains);

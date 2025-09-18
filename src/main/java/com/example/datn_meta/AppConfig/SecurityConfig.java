@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**", "/css/**", "/js/**", "/images/**", "/static/**").permitAll()
-                        .requestMatchers("/login", "/register").permitAll() // nếu bạn có route khác
+                        .requestMatchers("/login", "/register","/account").permitAll() // nếu bạn có route khác
                         .anyRequest().authenticated()
                 ).formLogin(form -> form
                         .loginPage("/auth/login")
@@ -60,6 +60,8 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/auth/login?logout=true")
+                        .invalidateHttpSession(true) // huỷ session
+                        .deleteCookies("JSESSIONID") // xoá cookie session
                         .permitAll()
                 );
 
