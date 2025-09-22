@@ -31,7 +31,7 @@
                         <a href="#">ĐỒ DA</a>
                         <a href="#">THƯƠNG HIỆU</a>
                     </nav>
-                    <a href="/" class="logo">META SHOP</a>
+                    <a href="/static" class="logo">META SHOP</a>
                     <div class="header-icons">
                         <div class="search-box">
                             <input type="text" placeholder="Tìm kiếm...">
@@ -57,7 +57,7 @@
         <!-- BREADCRUMB -->
         <div class="breadcrumb" th:if="${breadcrumb}">
             <div class="container">
-                <a href="/">Trang chủ</a>
+                <a href="/static">Trang chủ</a>
                 <span th:each="item, iterStat : ${breadcrumb}" th:if="${!iterStat.last}">
                     / <a th:href="${item.url}" th:text="${item.name}">Item</a>
                 </span>
