@@ -37,15 +37,31 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/css/**", "/js/**", "/images/**", "/static/**").permitAll()
-                        .requestMatchers("/login", "/register","/account").permitAll() // nếu bạn có route khác
+                        .requestMatchers("/auth/**", "/css/**", "/js/**", "/images/**", "/static/**","/css/**","/fragments/**").permitAll()
+
+                        .requestMatchers("/homePage", "/account/**", "/products/**", "/orders/**", "/shipping/**", "/invoices/**").authenticated() // nếu bạn có route khác permitall
+                        .requestMatchers("/admin/**").hasRole("ADMIN")  // phân quyền truy cập
+                        .requestMatchers("/employee/**").hasRole("STAFF")
                         .anyRequest().authenticated()
+
                 ).formLogin(form -> form
                         .loginPage("/auth/login")
                         .loginProcessingUrl("/auth/login")         // POST -> Spring xử lý
-                        .defaultSuccessUrl("/homePage", true)     // login thành công -> /home
+//                        .defaultSuccessUrl("/homePage", true)     // login thành công -> /home
+                        .successHandler((request, response, authentication) -> {
+                            var roles = authentication.getAuthorities()
+                                    .stream().map(a -> a.getAuthority()).collect(java.util.stream.Collectors.toSet());
+                            String target = "/homePage";
+                            if (roles.contains("ROLE_ADMIN") || roles.contains("ADMIN")) {
+                                target = "/admin/dashboard";
+                            } else if (roles.contains("ROLE_STAFF") || roles.contains("STAFF")) {
+                                target = "/employee/staff";
+                            }
+                            response.sendRedirect(target);
+                        })
                         .failureUrl("/auth/login?error=true")// đường dẫn tới login.html
                         .permitAll())
+
                 .oauth2Login(oauth -> oauth
                         .loginPage("/auth/login")
                         .successHandler((request, response, authentication) -> {
@@ -55,6 +71,7 @@ public class SecurityConfig {
                         .failureUrl("/auth/login?error=true")
                         .userInfoEndpoint(userInfo -> userInfo.userService(oauth2UserService()))
                 )
+
 
 
                 .logout(logout -> logout

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRANG PHỤC - META SHOP</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link th:href="@{/css/layout.css}" rel="stylesheet" >
     <style>
         * {
             margin: 0;
@@ -432,56 +433,14 @@
     </style>
 </head>
 <body>
-    <!-- TOP BAR -->
-    <div class="top-bar">
-        <div class="container">
-            <div class="top-bar-left">
-                <span>TIẾP NỐI HUYỀN THOẠI | SHOP NOW</span>
-            </div>
-            <div class="top-bar-right">
-                <a href="#">TÌM CỬA HÀNG</a>
-                <a href="#">SUPPORT</a>
-            </div>
-        </div>
-    </div>
 
-    <!-- MAIN HEADER -->
-    <header class="main-header">
-        <div class="container">
-            <div class="header-content">
-                <nav class="main-nav">
-                    <a href="#">TRANG PHỤC</a>
-                    <a href="#">PHỤ KIỆN</a>
-                    <a href="#">ĐỒ DA</a>
-                    <a href="#">THƯƠNG HIỆU</a>
-                </nav>
-                <a href="/" class="logo">META SHOP</a>
-                <div class="header-icons">
-                    <div class="search-box">
-                        <input type="text" placeholder="Tìm kiếm...">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <a href="#" class="icon-btn">
-                        <i class="fas fa-user"></i>
-                        <span th:if="${username}" th:text="${username}" style="margin-left: 5px; font-size: 12px;"></span>
-                    </a>
-                    <a href="#" class="icon-btn">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="badge">0</span>
-                    </a>
-                    <a href="#" class="icon-btn">
-                        <i class="fas fa-heart"></i>
-                        <span class="badge">0</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
+<!-- HEADER (include fragment) -->
+<div th:replace="~{Layout/header :: header}"></div>
 
     <!-- BREADCRUMB -->
     <div class="breadcrumb">
         <div class="container">
-            <a href="/">Trang chủ</a> / <span>Trang Phục</span>
+            <a th:href="@{/homePage}">Trang chủ</a> / <span>Trang Phục</span>
         </div>
     </div>
 
@@ -591,16 +550,10 @@
     </div>
 
     <!-- FOOTER -->
-    <footer style="background: #222; color: #ccc; padding: 30px 20px; margin-top: 30px; text-align: center;">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <p>© 2025 META SHOP. All rights reserved.</p>
-            <p style="margin-top: 10px; font-size: 14px; color: #aaa;">
-                <strong>Tác giả:</strong> linhntdph49844
-            </p>
-        </div>
-    </footer>
+<div th:replace="~{Layout/footer :: footer}"></div>
 
-    <!-- FLOATING CHAT -->
+
+<!-- FLOATING CHAT -->
     <div class="floating-chat">
         <i class="fas fa-comments"></i>
         <span>Liên hệ</span>

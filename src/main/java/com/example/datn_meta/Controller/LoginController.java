@@ -133,7 +133,14 @@ public class LoginController {
 
         // Thành công
         redirectAttributes.addFlashAttribute("username", user.getFullName());
-        return "redirect:/homePage";
+        // Điều hướng theo role
+        if (user.getRole() == Users.Role.ADMIN) {
+            return "redirect:/admin/dashboard";
+        } else if (user.getRole() == Users.Role.STAFF) {
+            return "redirect:/employee/dashboard";
+        } else {
+            return "redirect:/homePage";
+        }
     }
 
     @GetMapping("/oauth2/success")
@@ -183,6 +190,6 @@ public class LoginController {
 
         // Gửi username ra flash attribute
         redirectAttributes.addFlashAttribute("username", user.getFullName());
-        return "redirect:/homePage";
+        return "redirect:/homePage"; // homeePage
     }
 }

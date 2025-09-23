@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Thông Tin Cá Nhân</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
+  <link th:href="@{/css/layout.css}" rel="stylesheet" >
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -127,15 +129,16 @@
   </style>
 </head>
 <body>
+<div th:replace="~{Layout/header :: header}"></div>
 <div class="account-container">
   <!-- Sidebar -->
   <div class="sidebar">
     <p class="welcome">Xin Chào <br><strong th:text="${user.fullName}"></strong></p>
     <p></p>
-    <a th:href="@{logout}" class="bi bi-box-arrow-right"></a>
+    <a th:href="@{/logout}" class="bi bi-box-arrow-right">Đăng Xuất</a>
 
     <ul class="menu">
-      <li><i class="bi bi-person"></i> Thông Tin Cá Nhân</li>s
+      <li><i class="bi bi-person"></i> Thông Tin Cá Nhân</li>
       <li><i class="bi bi-cart"></i> Lịch Sử Đặt Hàng</li>
       <li><i class="bi bi-truck"></i> Thông Tin Giao Hàng</li>
       <li><i class="bi bi-envelope"></i> Đăng Ký Nhận Tin</li>
@@ -166,5 +169,6 @@
     </form>
   </div>
 </div>
+<div th:replace="~{Layout/footer :: footer}"></div>
 </body>
 </html>

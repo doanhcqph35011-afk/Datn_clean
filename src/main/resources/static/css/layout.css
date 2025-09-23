@@ -1,0 +1,171 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: #fff;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* TOP BAR */
+.top-bar {
+    background: #8B0000;
+    color: white;
+    padding: 8px 0;
+    font-size: 12px;
+}
+.top-bar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* MAIN HEADER */
+.main-header {
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    white-space: nowrap;
+}
+.user-name {
+    font-weight: bold;
+    margin-right: 8px;
+    white-space: nowrap; /* Giữ nguyên 1 dòng */
+}
+.main-nav {
+    display: flex;
+    gap: 20px;
+    white-space: nowrap;
+}
+.main-nav a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+.main-nav a:hover {
+    color: #8B0000;
+}
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.search-box {
+    position: relative;
+}
+.search-box input {
+    padding: 8px 35px 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    width: 200px;
+}
+.search-box i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+.icon-btn {
+    position: relative;
+    font-size: 18px;
+    color: #333;
+    text-decoration: none;
+}
+.badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #8B0000;
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* FOOTER */
+.footer {
+    background: #222;
+    color: #ccc;
+    padding: 30px 20px;
+    margin-top: 30px;
+    text-align: center;
+}
+.footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
+}
+.footer .footer-content div {
+    flex: 1;
+    min-width: 200px;
+}
+.footer h4 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+.footer p {
+    margin: 5px 0;
+    color: #aaa;
+}
+.footer .copy {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .main-nav {
+        flex-wrap: nowrap;
+        justify-content: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .main-nav {
+        flex-direction: column;
+        text-align: center;
+    }
+    .search-box input {
+        width: 100%;
+    }
+}

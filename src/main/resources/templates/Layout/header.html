@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<header th:fragment="header">
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-left">
+                <span>TIẾP NỐI HUYỀN THOẠI | SHOP NOW</span>
+            </div>
+            <div class="top-bar-right">
+                <a href="#">TÌM CỬA HÀNG</a>
+                <a href="#">SUPPORT</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <div class="main-header">
+        <div class="header-content">
+            <nav class="main-nav">
+                <a th:href="@{/homePage}">TRANG CHỦ</a>
+                <a th:href="@{/products}">SẢN PHẨM</a>
+                <a href="#">BỘ SƯU TẬP</a>
+                <a href="#">TIN TỨC</a>
+                <a href="#">LIÊN HỆ</a>
+            </nav>
+            <a th:href="@{/homePage}" class="logo">META SHOP</a>
+            <div class="header-icons">
+                <div class="search-box">
+                    <input type="text" placeholder="Tìm kiếm...">
+                    <i class="fas fa-search"></i>
+                </div>
+                 <a th:href="@{/account}" class="icon">👤</a>
+                <a href="#" class="icon-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">0</span>
+                </a>
+                <a href="#" class="icon-btn">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+</body>
+</html>
