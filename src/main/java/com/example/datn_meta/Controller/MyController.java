@@ -25,26 +25,17 @@ public class MyController {
         Users user = userDao.findByEmailOrPhone(loginId).orElse(null);
 
         if (user != null) {
-            model.addAttribute("fullname", user.getFullName());
+            model.addAttribute("fullName", user.getFullName());
         }
         return "App/homePage";
     }
-    // Truy cập trang quản trị
-    @GetMapping("admin/dashboard")
-    public String dashboard(Model model, Principal principal) {
-        String loginId = principal.getName();
-        Users user = userDao.findByEmailOrPhone(loginId).orElse(null);
-        if (user != null) {
-            model.addAttribute("fullname", user.getFullName());
-        }
-        return "admin/dashboard";
-    }
+
     @GetMapping("/employee/staff")
     public String dashStaff(Model model, Principal principal) {
         String loginId = principal.getName();
         Users user = userDao.findByEmailOrPhone(loginId).orElse(null);
         if (user != null) {
-            model.addAttribute("fullname", user.getFullName());
+            model.addAttribute("fullName", user.getFullName());
         }
         return "employee/staff";
     }

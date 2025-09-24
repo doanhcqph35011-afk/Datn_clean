@@ -1,0 +1,13 @@
+<header class="topbar py-2 px-3 d-flex justify-content-between align-items-center"
+        th:fragment="dashheader(fullName)">
+  <div class="fw-bold">
+    Xin Chào <strong th:text="${fullName} ?: 'Chưa có tên'"></strong>
+  </div>
+  <div>
+    <button class="btn btn-sm btn-light"><i class="bi bi-bell"></i></button>
+    <a class="btn btn-sm btn-light" th:href="@{/account}">
+      <i class="bi bi-person">Tài Khoản</i>
+    </a>
+  </div>
+</header>
+

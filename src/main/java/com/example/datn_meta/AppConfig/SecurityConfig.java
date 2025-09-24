@@ -40,7 +40,8 @@ public class SecurityConfig {
                         .requestMatchers("/auth/**", "/css/**", "/js/**", "/images/**", "/static/**","/css/**","/fragments/**").permitAll()
 
                         .requestMatchers("/homePage", "/account/**", "/products/**", "/orders/**", "/shipping/**", "/invoices/**").authenticated() // nếu bạn có route khác permitall
-                        .requestMatchers("/admin/**").hasRole("ADMIN")  // phân quyền truy cập
+                        // phân quyền truy cập route cho admin
+                        .requestMatchers("/admin/**","/account/**").hasRole("ADMIN")
                         .requestMatchers("/employee/**").hasRole("STAFF")
                         .anyRequest().authenticated()
 
@@ -104,5 +105,10 @@ public class SecurityConfig {
             return oAuth2User;
         };
 
+    }
+
+    @Bean
+    org.springframework.web.filter.HiddenHttpMethodFilter hiddenHttpMethodFilter() {
+        return new org.springframework.web.filter.HiddenHttpMethodFilter();
     }
 }
