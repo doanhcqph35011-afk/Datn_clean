@@ -62,4 +62,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     
     // Đếm sản phẩm theo danh mục
     Long countByCategoryCategoryId(Long categoryId);
+
+    // Danh sách thương hiệu (không trùng)
+    @Query("SELECT DISTINCT p.brand FROM Product p WHERE p.brand IS NOT NULL AND p.brand <> ''")
+    List<String> findDistinctBrands();
 }

@@ -65,9 +65,11 @@ public class ProductController {
             model.addAttribute("products", products);
         }
 
-        // Lấy danh sách danh mục
+        // Lấy danh sách danh mục và thương hiệu
         List<Category> categories = productService.getAllCategories();
         model.addAttribute("categories", categories);
+        List<String> brands = productService.getAllBrands();
+        model.addAttribute("brands", brands);
 
         // Thông tin phân trang
         model.addAttribute("currentPage", page);

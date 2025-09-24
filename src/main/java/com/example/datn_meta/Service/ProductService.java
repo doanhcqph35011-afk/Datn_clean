@@ -86,6 +86,11 @@ public class ProductService {
         return categoryRepository.findById(id);
     }
 
+    // Lấy danh sách thương hiệu
+    public List<String> getAllBrands() {
+        return productRepository.findDistinctBrands();
+    }
+
     // Lưu sản phẩm
     public Product saveProduct(Product product) {
         return productRepository.save(product);
