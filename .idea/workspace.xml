@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42936c56-b1cc-4ec6-97bc-4ae47839bdf8" name="Changes" comment="hoang commit">
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Controller/CartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Controller/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Entity/Cart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Entity/CartRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Entity/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Repository/CartRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/Repository/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/resources/templates/Product/product.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/AppConfig/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Datn_clean-main/src/main/java/com/example/datn_meta/AppConfig/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Datn_clean-main/src/main/resources/templates/App/Product.html" beforeDir="false" />
-    </list>
+    <list default="true" id="ea9abd73-326c-44b8-8068-6e0296948c74" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,89 +13,89 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="HTML File" />
         <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
     <favorite-branches>
       <branch-storage>
         <map>
-          <entry type="REMOTE">
+          <entry type="LOCAL">
             <value>
               <list>
-                <branch-info repo="$PROJECT_DIR$" source="origin/Hoang" />
-                <branch-info repo="$PROJECT_DIR$" source="origin/Linh" />
-                <branch-info repo="$PROJECT_DIR$" source="origin/Doanh" />
+                <branch-info repo="$PROJECT_DIR$" source="duongdhph39970" />
               </list>
             </value>
           </entry>
         </map>
       </branch-storage>
     </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Linhntdph49844" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;hoang15986&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/doanhcqph35011-afk/Datn_clean.git&quot;,
-    &quot;accountId&quot;: &quot;0b0413e0-d5fb-493f-9889-ff0d98a8be24&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
-}</component>
-  <component name="ProjectId" id="32gZacFIzI7PjIlGIpxiL8ueUk3" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectId" id="32QJyr48SPvr5ADpKsvNUX1mqIu" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.DatnMetaApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/OS/OneDrive/Máy tính/DATN/Datn_clean-main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+  </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\OS\OneDrive\Máy tính\DATN\Datn_clean-main\Datn_clean-main\src\main\resources\templates\Auth" />
-      <recent name="C:\Users\OS\OneDrive\Máy tính\DATN\Datn_clean-main\Datn_clean-main\src\main\resources\templates\Product" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Du An Tot Nghiep\DATN_META\src\main\resources\static" />
+      <recent name="C:\Du An Tot Nghiep\DATN_META\src\main\java\images" />
+      <recent name="C:\Du An Tot Nghiep\DATN_META\src\main\java\com\example\datn_meta" />
+      <recent name="C:\Du An Tot Nghiep\DATN_META\src\main\resources\templates" />
+      <recent name="C:\Du An Tot Nghiep\DATN_META\src\main\resources\templates\App" />
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DatnMetaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="DATN_META" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.datn_meta.DatnMetaApplication" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,33 +104,58 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.28293.39" />
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.28293.39" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-IU-252.25557.131" />
       </set>
     </attachedChunks>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="42936c56-b1cc-4ec6-97bc-4ae47839bdf8" name="Changes" comment="" />
-      <created>1757844240541</created>
+      <changelist id="ea9abd73-326c-44b8-8068-6e0296948c74" name="Changes" comment="" />
+      <created>1757347121237</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1757844240541</updated>
-      <workItem from="1757844241887" duration="4428000" />
-      <workItem from="1757864188467" duration="1808000" />
-      <workItem from="1757926497950" duration="10742000" />
-      <workItem from="1758007468451" duration="11116000" />
-      <workItem from="1758086050866" duration="160000" />
+      <updated>1757347121237</updated>
+      <workItem from="1757347122435" duration="13605000" />
+      <workItem from="1757568410305" duration="35953000" />
+      <workItem from="1757809086959" duration="5208000" />
+      <workItem from="1757860083855" duration="98000" />
+      <workItem from="1757862626851" duration="1154000" />
+      <workItem from="1757864829768" duration="376000" />
+      <workItem from="1757865312244" duration="244000" />
+      <workItem from="1757865565870" duration="498000" />
+      <workItem from="1757866079154" duration="396000" />
+      <workItem from="1757866684690" duration="8000" />
+      <workItem from="1757868908016" duration="3000" />
+      <workItem from="1757949348282" duration="3906000" />
+      <workItem from="1757953397974" duration="16000" />
+      <workItem from="1758036937879" duration="7110000" />
+      <workItem from="1758121495520" duration="9589000" />
+      <workItem from="1758206982143" duration="5537000" />
+      <workItem from="1758294247140" duration="12300000" />
+      <workItem from="1758469186320" duration="2580000" />
+      <workItem from="1758471834165" duration="102000" />
+      <workItem from="1758731274494" duration="15000" />
+      <workItem from="1759070565873" duration="4701000" />
     </task>
-    <task id="LOCAL-00001" summary="hoang commit">
+    <task id="LOCAL-00001" summary="innit commit">
       <option name="closed" value="true" />
-      <created>1757930194379</created>
+      <created>1757347287709</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1757930194379</updated>
+      <updated>1757347287709</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="innit commit">
+      <option name="closed" value="true" />
+      <created>1757426491164</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1757426491164</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,24 +166,27 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="CUSTOM_BOOLEAN_PROPERTIES">
-                <map>
-                  <entry key="Show.Git.Branches" value="false" />
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="hoang commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="hoang commit" />
+    <MESSAGE value="innit commit&#10;git push -u origin main" />
+    <MESSAGE value="innit commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="innit commit" />
   </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/datn_meta/Controller/OrderController.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,0 +1,239 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Form Đơn Hàng</title>-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">-->
+<!--</head>-->
+<!--<body class="container mt-4">-->
+
+<!--<h2 th:text="${order.order_id == null ? 'Tạo đơn hàng mới' : 'Cập nhật đơn hàng'}"></h2>-->
+
+<!--<form th:action="@{/order/save}" th:object="${order}" method="post" class="mt-3">-->
+
+<!--    <input type="hidden" th:field="*{order_id}"/>-->
+
+<!--    &lt;!&ndash; Chọn khách hàng &ndash;&gt;-->
+<!--    <div class="mb-3">-->
+<!--        <label class="form-label">Khách hàng</label>-->
+<!--        <select th:field="*{customer}" class="form-select" required>-->
+<!--            <option value="">&#45;&#45; Chọn khách hàng &#45;&#45;</option>-->
+<!--            <option th:each="c : ${customers}"-->
+<!--                    th:value="${c}"-->
+<!--                    th:text="${c.name + ' - ' + c.email}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Ngày đặt &ndash;&gt;-->
+<!--    <div class="mb-3">-->
+<!--        <label class="form-label">Ngày đặt</label>-->
+<!--        <input type="datetime-local" th:field="*{order_date}" class="form-control" required/>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Tổng tiền &ndash;&gt;-->
+<!--    <div class="mb-3">-->
+<!--        <label class="form-label">Tổng tiền</label>-->
+<!--        <input type="number" step="0.01" th:field="*{total_amount}" class="form-control" required/>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Phương thức thanh toán &ndash;&gt;-->
+<!--    <div class="mb-3">-->
+<!--        <label class="form-label">Phương thức thanh toán</label>-->
+<!--        <select th:field="*{payment_method}" class="form-select">-->
+<!--            <option value="COD">COD</option>-->
+<!--            <option value="Banking">Chuyển khoản</option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Trạng thái thanh toán &ndash;&gt;-->
+<!--    <div class="mb-3">-->
+<!--        <label class="form-label">Trạng thái thanh toán</label>-->
+<!--        <select th:field="*{payment_status}" class="form-select">-->
+<!--            <option value="unpaid">Chưa thanh toán</option>-->
+<!--            <option value="paid">Đã thanh toán</option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Trạng thái đơn &ndash;&gt;-->
+<!--    <div class="mb-3">-->
+<!--        <label class="form-label">Trạng thái đơn</label>-->
+<!--        <select th:field="*{status}" class="form-select">-->
+<!--            <option value="pending">Đang xử lý</option>-->
+<!--            <option value="shipped">Đang giao</option>-->
+<!--            <option value="delivered">Đã giao</option>-->
+<!--            <option value="cancelled">Đã hủy</option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Địa chỉ giao hàng &ndash;&gt;-->
+<!--    <div class="mb-3">-->
+<!--        <label class="form-label">Địa chỉ giao hàng</label>-->
+<!--        <input type="text" th:field="*{shipping_address}" class="form-control" required/>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Nút &ndash;&gt;-->
+<!--    <div class="mt-3">-->
+<!--        <button type="submit" class="btn btn-primary">Lưu</button>-->
+<!--        <a th:href="@{/orders/list}" class="btn btn-secondary">Hủy</a>-->
+<!--    </div>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Thêm/Sửa đơn hàng</title>-->
+<!--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">-->
+<!--</head>-->
+<!--<body class="container mt-4">-->
+
+<!--&lt;!&ndash; Tiêu đề &ndash;&gt;-->
+<!--<h2 th:text="${order.order_id == null ? 'Tạo đơn hàng mới' : 'Cập nhật đơn hàng'}"></h2>-->
+
+<!--&lt;!&ndash; Form &ndash;&gt;-->
+<!--<form th:action="@{/orders/save}" th:object="${order}" method="post" class="row g-3">-->
+
+<!--    &lt;!&ndash; hidden id &ndash;&gt;-->
+<!--    <input type="hidden" th:field="*{order_id}" />-->
+<!--    &lt;!&ndash; Khách hàng &ndash;&gt;-->
+<!--    <div class="col-md-6">-->
+<!--        <label class="form-label">Khách hàng</label>-->
+<!--        <select th:field="*{customer}" class="form-select" required>-->
+<!--            <option value="">&#45;&#45; Chọn khách hàng &#45;&#45;</option>-->
+<!--            <option th:each="c : ${customers}"-->
+<!--                    th:value="${c}"-->
+<!--                    th:text="${c.name + ' - ' + c.email}">-->
+<!--            </option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Ngày đặt &ndash;&gt;-->
+<!--    <div class="col-md-6">-->
+<!--        <label class="form-label">Ngày đặt</label>-->
+<!--        <input type="datetime-local" class="form-control" th:field="*{order_date}" />-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Trạng thái &ndash;&gt;-->
+<!--    <div class="col-md-6">-->
+<!--        <label class="form-label">Trạng thái</label>-->
+<!--        <select class="form-select" th:field="*{status}">-->
+<!--            <option value="pending">Đang xử lý</option>-->
+<!--            <option value="confirmed">Đã xác nhận</option>-->
+<!--            <option value="shipping">Đang giao</option>-->
+<!--            <option value="completed">Hoàn thành</option>-->
+<!--            <option value="cancelled">Đã hủy</option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Địa chỉ giao hàng &ndash;&gt;-->
+<!--    <div class="col-md-6">-->
+<!--        <label class="form-label">Địa chỉ giao hàng</label>-->
+<!--        <input type="text" class="form-control" th:field="*{shipping_address}" />-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Tổng tiền &ndash;&gt;-->
+<!--    <div class="col-md-6">-->
+<!--        <label class="form-label">Tổng tiền</label>-->
+<!--        <input type="number" step="1000" class="form-control" th:field="*{total_amount}" />-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Phương thức thanh toán &ndash;&gt;-->
+<!--    <div class="col-md-6">-->
+<!--        <label class="form-label">Phương thức thanh toán</label>-->
+<!--        <select class="form-select" th:field="*{payment_method}">-->
+<!--            <option value="COD">COD</option>-->
+<!--            <option value="Banking">Chuyển khoản</option>-->
+<!--        </select>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Nút &ndash;&gt;-->
+<!--    <div class="col-12">-->
+<!--        <button type="submit" class="btn btn-primary">Lưu</button>-->
+<!--        <a th:href="@{/orders/list}" class="btn btn-secondary">Hủy</a>-->
+<!--    </div>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm/Sửa đơn hàng</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-4">
+
+<!-- Tiêu đề -->
+<h2 th:text="${order.order_id == null ? 'Tạo đơn hàng mới' : 'Cập nhật đơn hàng'}"></h2>
+
+<!-- Form -->
+<form th:action="@{/orders/save}" th:object="${order}" method="post" class="row g-3">
+
+    <!-- hidden id -->
+    <input type="hidden" th:field="*{order_id}" />
+
+    <!-- Khách hàng -->
+    <div class="col-md-6">
+        <label class="form-label">Khách hàng</label>
+        <select th:field="*{customer}" class="form-select" required>
+            <option value="">-- Chọn khách hàng --</option>
+            <option th:each="c : ${customers}"
+                    th:value="${c.customer_id}"
+                    th:text="${c.full_name + ' - ' + c.email}">
+            </option>
+        </select>
+    </div>
+
+    <!-- Ngày đặt -->
+    <div class="col-md-6">
+        <label class="form-label">Ngày đặt</label>
+        <input type="text" class="form-control" th:field="*{order_date}" placeholder="YYYY-MM-DD HH:mm:ss"/>
+    </div>
+
+    <!-- Trạng thái -->
+    <div class="col-md-6">
+        <label class="form-label">Trạng thái</label>
+        <select class="form-select" th:field="*{status}">
+            <option value="pending">Đang xử lý</option>
+            <option value="confirmed">Đã xác nhận</option>
+            <option value="shipping">Đang giao</option>
+            <option value="completed">Hoàn thành</option>
+            <option value="cancelled">Đã hủy</option>
+        </select>
+    </div>
+
+    <!-- Địa chỉ giao hàng -->
+    <div class="col-md-6">
+        <label class="form-label">Địa chỉ giao hàng</label>
+        <input type="text" class="form-control" th:field="*{shipping_address}" />
+    </div>
+
+    <!-- Tổng tiền -->
+    <div class="col-md-6">
+        <label class="form-label">Tổng tiền</label>
+        <input type="number" step="1000" class="form-control" th:field="*{total_amount}" />
+    </div>
+
+    <!-- Phương thức thanh toán -->
+    <div class="col-md-6">
+        <label class="form-label">Phương thức thanh toán</label>
+        <select class="form-select" th:field="*{payment_method}">
+            <option value="COD">COD</option>
+            <option value="Banking">Chuyển khoản</option>
+        </select>
+    </div>
+
+    <!-- Nút -->
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a th:href="@{/orders/list}" class="btn btn-secondary">Hủy</a>
+    </div>
+</form>
+
+</body>
+</html>
+
