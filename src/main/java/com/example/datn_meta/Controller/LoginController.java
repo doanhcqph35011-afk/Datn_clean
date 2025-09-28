@@ -1,9 +1,9 @@
-package com.example.datn_meta.Controller;
+package com.example.Datn_clean.Controller;
 
-import com.example.datn_meta.Entity.RegisterRequest;
-import com.example.datn_meta.Entity.Users;
-import com.example.datn_meta.Repository.UserDao;
-import com.example.datn_meta.Service.JWTService;
+import com.example.Datn_clean.Entity.RegisterRequest;
+import com.example.Datn_clean.Entity.Users;
+import com.example.Datn_clean.Repository.UserDao;
+import com.example.Datn_clean.Service.JWTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

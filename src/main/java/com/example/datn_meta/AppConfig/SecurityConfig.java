@@ -1,4 +1,4 @@
-package com.example.datn_meta.AppConfig;
+package com.example.Datn_clean.AppConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

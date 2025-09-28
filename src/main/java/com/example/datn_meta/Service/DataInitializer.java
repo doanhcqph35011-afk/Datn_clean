@@ -1,4 +1,4 @@
-package com.example.datn_meta.Service;
+package com.example.Datn_clean.Service;
 
 /**
  * Data Initializer - Khởi tạo dữ liệu mẫu
@@ -6,11 +6,11 @@ package com.example.datn_meta.Service;
  * @version 1.0
  * @since 2025-01-14
  */
-import com.example.datn_meta.Entity.Category;
-import com.example.datn_meta.Entity.Product;
-import com.example.datn_meta.Entity.ProductImage;
-import com.example.datn_meta.Repository.CategoryRepository;
-import com.example.datn_meta.Repository.ProductRepository;
+import com.example.Datn_clean.Entity.Category;
+import com.example.Datn_clean.Entity.Product;
+import com.example.Datn_clean.Entity.ProductImage;
+import com.example.Datn_clean.Repository.CategoryRepository;
+import com.example.Datn_clean.Repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;

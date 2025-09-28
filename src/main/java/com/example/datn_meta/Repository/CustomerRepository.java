@@ -1,10 +1,10 @@
-package com.example.datn_meta.Repository;
+package com.example.Datn_clean.Repository;
 
-import com.example.datn_meta.Entity.Customer;
+import com.example.Datn_clean.Entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CustomerRepository  extends JpaRepository<Customer, Long> {
+public interface CustomerRepository  extends JpaRepository<Cust> {
 
 }

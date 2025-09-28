@@ -1,9 +1,9 @@
-package com.example.datn_meta.Service;
+package com.example.Datn_clean.Service;
 
-import com.example.datn_meta.Entity.OrderItem;
-import com.example.datn_meta.Entity.Product;
-import com.example.datn_meta.Repository.OrderItemRepository;
-import com.example.datn_meta.Repository.ProductRepository;
+import com.example.Datn_clean.Entity.OrderItem;
+import com.example.Datn_clean.Entity.Product;
+import com.example.Datn_clean.Repository.OrderItemRepository;
+import com.example.Datn_clean.Repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.example.datn_meta.Repository;
+package com.example.Datn_clean.Repository;
 
-import com.example.datn_meta.Entity.Users;
+import com.example.Datn_clean.Entity.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

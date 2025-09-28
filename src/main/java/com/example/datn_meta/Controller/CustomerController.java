@@ -1,7 +1,7 @@
-package com.example.datn_meta.Controller;
+package com.example.Datn_clean.Controller;
 
-import com.example.datn_meta.Entity.Customer;
-import com.example.datn_meta.Service.CustomerService;
+import com.example.Datn_clean.Entity.Customer;
+import com.example.Datn_clean.Service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

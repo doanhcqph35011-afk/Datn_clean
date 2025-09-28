@@ -1,8 +1,8 @@
-package com.example.datn_meta.Controller;
+package com.example.Datn_clean.Controller;
 
 
-import com.example.datn_meta.Entity.Employee;
-import com.example.datn_meta.Service.EmployeeService;
+import com.example.Datn_clean.Entity.Employee;
+import com.example.Datn_clean.Service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

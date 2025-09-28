@@ -1,8 +1,8 @@
-package com.example.datn_meta.Service;
+package com.example.Datn_clean.Service;
 
-import com.example.datn_meta.Entity.Customer;
-import com.example.datn_meta.Entity.order;
-import com.example.datn_meta.Repository.CustomerRepository;
+import com.example.Datn_clean.Entity.Customer;
+import com.example.Datn_clean.Entity.order;
+import com.example.Datn_clean.Repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

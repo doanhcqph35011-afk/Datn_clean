@@ -1,4 +1,4 @@
-package com.example.datn_meta.Entity;
+package com.example.Datn_clean.Entity;
 
 import jakarta.persistence.*;
 import lombok.*;

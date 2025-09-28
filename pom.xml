@@ -14,9 +14,9 @@
     </parent>
 
     <groupId>com.example</groupId>
-    <artifactId>DATN_META</artifactId>
+    <artifactId>Datn_clean</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>DATN_META</name>
+    <name>Datn_clean</name>
     <description>DATN META Project</description>
 
     <properties>

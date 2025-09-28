@@ -1,7 +1,7 @@
-package com.example.datn_meta.Repository;
+package com.example.Datn_clean.Repository;
 
 
-import com.example.datn_meta.Entity.order;
+import com.example.Datn_clean.Entity.order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

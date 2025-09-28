@@ -1,7 +1,7 @@
-package com.example.datn_meta.Service;
+package com.example.Datn_clean.Service;
 
-import com.example.datn_meta.Entity.Users;
-import com.example.datn_meta.Repository.UserDao;
+import com.example.Datn_clean.Entity.Users;
+import com.example.Datn_clean.Repository.UserDao;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

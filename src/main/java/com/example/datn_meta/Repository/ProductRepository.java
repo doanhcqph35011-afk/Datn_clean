@@ -1,4 +1,4 @@
-package com.example.datn_meta.Repository;
+package com.example.Datn_clean.Repository;
 
 /**
  * Product Repository - Truy cập dữ liệu sản phẩm
@@ -6,7 +6,7 @@ package com.example.datn_meta.Repository;
  * @version 1.0
  * @since 2025-01-14
  */
-import com.example.datn_meta.Entity.Product;
+import com.example.Datn_clean.Entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

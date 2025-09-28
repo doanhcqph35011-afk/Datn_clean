@@ -1,10 +1,10 @@
-package com.example.datn_meta.Controller;
+package com.example.Datn_clean.Controller;
 
-import com.example.datn_meta.Entity.Product;
-import com.example.datn_meta.Entity.Category;
-import com.example.datn_meta.Entity.Users;
-import com.example.datn_meta.Repository.UserDao;
-import com.example.datn_meta.Service.ProductService;
+import com.example.Datn_clean.Entity.Product;
+import com.example.Datn_clean.Entity.Category;
+import com.example.Datn_clean.Entity.Users;
+import com.example.Datn_clean.Repository.UserDao;
+import com.example.Datn_clean.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;

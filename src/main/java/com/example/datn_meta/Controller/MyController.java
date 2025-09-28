@@ -1,6 +1,6 @@
-package com.example.datn_meta.Controller;
+package com.example.Datn_clean.Controller;
 
-import com.example.datn_meta.Service.ProductService;
+import com.example.Datn_clean.Service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

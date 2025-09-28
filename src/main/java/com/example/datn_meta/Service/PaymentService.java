@@ -1,7 +1,7 @@
-package com.example.datn_meta.Service;
+package com.example.Datn_clean.Service;
 
-import com.example.datn_meta.Entity.PayMent;
-import com.example.datn_meta.Repository.PaymentRepository;
+import com.example.Datn_clean.Entity.PayMent;
+import com.example.Datn_clean.Repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
