@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class CustomerController {
     private final CustomerService customerService;
 
-    // Danh sách khách hàng
+    // Danh sách khách hàng 2
     @GetMapping("/list")
     public String listCustomers(Model model) {
         model.addAttribute("customers", customerService.findAll());
